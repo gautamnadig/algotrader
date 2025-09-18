@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Dashboard</h2>
+    <p>This is your main trading dashboard.</p>
+
+    <!-- Example sub-tabs under dashboard -->
+    <div style="margin-top:20px;">
+        <button onclick="showTab('live')">Live</button>
+        <button onclick="showTab('strategies')">Strategies</button>
+    </div>
+
+    <div id="live" class="tab-content">
+        <h3>Live Market</h3>
+        <p>Streaming data will appear here.</p>
+    </div>
+
+    <div id="strategies" class="tab-content" style="display:none;">
+        <h3>Strategies</h3>
+        <p>Your strategies and backtests appear here.</p>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll(".tab-content").forEach(el => el.style.display = "none");
+            document.getElementById(tabName).style.display = "block";
+        }
+    </script>
+{% endblock %}

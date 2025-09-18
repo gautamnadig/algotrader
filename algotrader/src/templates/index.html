@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Dashboard</title>
+    <style>
+        /* Top blue welcome bar */
+        .topbar {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Main nav bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+        .navbar a {
+            padding: 12px 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .navbar a.active {
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Sub-tabs for Dashboard */
+        .subtabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            background-color: #eaeaea;
+            padding: 8px;
+        }
+        .subtabs a {
+            padding: 10px 18px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .subtabs a.active {
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Content box */
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% if username %}
+        <div class="topbar">Welcome, {{ username }} 🎉</div>
+    {% endif %}
+
+    <!-- Main Nav -->
+    <div class="navbar">
+        <a href="{{ url_for('dashboard') }}" class="{{ 'active' if active_tab == 'dashboard' else '' }}">Dashboard</a>
+        <a href="{{ url_for('orders') }}" class="{{ 'active' if active_tab == 'orders' else '' }}">Orders</a>
+        <a href="{{ url_for('trades') }}" class="{{ 'active' if active_tab == 'trades' else '' }}">Trades</a>
+        <a href="{{ url_for('settings') }}" class="{{ 'active' if active_tab == 'settings' else '' }}">Settings</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <!-- Subtabs only under Dashboard -->
+ 
+
+    <!-- Page Content -->
+    <div class="content">
+        <h2>{{ active_tab|capitalize }} - {{ active_subtab|capitalize if active_subtab else '' }}</h2>
+        <p>This is the {{ active_subtab if active_subtab else active_tab }} content.</p>
+    </div>
+</body>
+</html>
